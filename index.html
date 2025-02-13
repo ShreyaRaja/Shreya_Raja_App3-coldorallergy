@@ -7,7 +7,7 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
 Authors in chronological order of contribution:
 Tim Riedel
-Author 2
+Shreya Raja
  
 Further Information:
 http://cns.utexas.edu/fri
@@ -17,10 +17,9 @@ Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-blah, blah, blah,
- 
+The goal of this code is to use simple questions to diagnose whether a patient has a cold or allergy 
 Known Issues:
-blah, blah, blah, blah
+Calculations are a bit glitchy and I haven't been able to figure out why yet.
 
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
@@ -42,13 +41,40 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
         function allergyAdd(){
             allergy_count = allergy_count + 1;
-		alert(allergy_count);
+		//alert(allergy_count); 
+        //used to test to troubleshoot
 
         }
 
         function coldAdd(){
             cold_count = cold_count + 1;
         }
+
+        function totalAllergyPercent(){
+            var allergyPercent = (allergy_count / 6)*100; //calculates averages and multiply by 100 to make percent. I wasn't able to figure out how to add a percent sign.
+            var coldPercent = (cold_count / 6)*100;
+
+            var resultText = document.getElementById('allergyText'); //allows us to call it in HTML
+            resultText.innerHTML = allergyPercent;
+
+            var resultText2 = document.getElementById('coldText');
+            resultText2.innerHTML = coldPercent;
+        };
+/*
+        function allergyPercent(){
+            var allergyAdd = 0.0
+            allergyAdd = allergy_count/6
+            allergyAdd = allergyAdd*100
+            return allergyAdd
+        }
+
+        function coldPercent(){
+            var coldAdd = 0.0
+            coldAdd = cold_count/6
+            coldAdd = coldAdd*100
+            return coldAdd
+        }
+*/
 
   </script>
 
@@ -67,7 +93,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     left: -100vw;
     overflow-y: auto;
     z-index: 0;
-    background-color: hsl(0,0%,100%);
+    background-color: hsl(231, 59%, 72%); /* <!-- This code makes the background color of the page purple --> */
 }
 
   .page:target {
@@ -78,7 +104,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 <body>
 <div id="header" class="w3-container w3-flat-carrot">
-	<h1>Cold or Allergies?</h1>
+	<h1>Cold or Allergies?</h1> <!--page header name-->
 </div>
 	
 <div id="content" class="w3-container">
@@ -92,27 +118,108 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 <div class="page" id="one">
 	<div id="header" class="w3-container w3-flat-carrot">
-		<h1>Question 1</h1>
+		<h1>Question 1</h1> <!--page header name-->
 	</div>
 	
     	<div id="content" class="w3-container">
-        <p>Put Question 1 content here.</p>    
+        <p style= "color: #3f093f"> <b> Are your eyes watery or itchy? </b> </p> <!--asking question-->
+        <a href="#two"  onclick="allergyAdd();" class="w3-btn w3-black"> Yes</a><!--if yes is clicked, 1 is added to allergy counter--> <!--next page-->
+        <a href="#two"  onclick="coldAdd();" class="w3-btn w3-black">No</a> <!--if no is clicked, 1 is added to cold counter--> <!--next page-->
     	</div>
 </div>
 
 <div class="page" id="two">
 	<div class="w3-container w3-flat-carrot">
-		<h1>Question 2</h1>
+		<h1>Question 2</h1> <!--page header name-->
 	</div>
-	
+	<!--
+    
+    -->
 	<div id="content" class="w3-container">
-		<p>Content of page 2 goes here.</p>
+		<p style= "color: #3f093f"> <b> Do you have a fever? </b> </p> <!--asking question-->
+        <a href="#three"  onclick="coldAdd();" class="w3-btn w3-black"> Yes</a><!--if yes is clicked, 1 is added to cold counter--> <!--next page-->
+        <a href="#three"  onclick="allergyAdd();" class="w3-btn w3-black">No</a> <!--if no is clicked, 1 is added to allergy counter--> <!--next page-->
 	</div>
 </div>	
 
+<div class="page" id="three">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 3</h1> <!--page header name-->
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p style= "color: #3f093f"> <b> Do you have a sore throat? </b> </p> <!--asking question-->
+        <a href="#four"  onclick="coldAdd();" class="w3-btn w3-black"> Yes</a><!--if yes is clicked, 1 is added to cold counter--> <!--next page-->
+        <a href="#four"  onclick="allergyAdd();" class="w3-btn w3-black">No</a> <!--if no is clicked, 1 is added to allergy counter--> <!--next page-->
+	</div>
+</div>	
+
+<div class="page" id="four">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 4</h1> <!--page header name-->
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p style= "color: #3f093f"> <b> Are your symptoms seasonal or chronic? </b> </p> <!--asking question-->
+        <a href="#five"  onclick="allergyAdd();" class="w3-btn w3-black"> Yes</a><!--if yes is clicked, 1 is added to allergy counter--> <!--next page-->
+        <a href="#five"  onclick="coldAdd();" class="w3-btn w3-black">No</a> <!--if no is clicked, 1 is added to cold counter--> <!--next page-->
+	</div>
+</div>
+
+<div class="page" id="five">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 5</h1> <!--page header name-->
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p style= "color: #3f093f"> <b> Are you sneezing? </b> </p> <!--asking question-->
+        <a href="#six"  onclick="allergyAdd();" class="w3-btn w3-black"> Yes</a><!--if yes is clicked, 1 is added to allergy counter--> <!--next page-->
+        <a href="#six"  onclick="coldAdd();" class="w3-btn w3-black">No</a> <!--if no is clicked, 1 is added to cold counter--> <!--next page-->
+	</div>
+</div>
+
+<div class="page" id="six">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 6</h1> <!--page header name-->
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p style= "color: #3f093f"> <b> Do you have a cough? </b> </p> <!--asking question-->
+        <a href="#resultsPage"  onclick="coldAdd();" class="w3-btn w3-black"> Yes</a><!--if yes is clicked, 1 is added to cold counter--> <!--next page-->
+        <a href="#resultsPage"  onclick="allergyAdd();" class="w3-btn w3-black">No</a> <!--if no is clicked, 1 is added to allergy counter--> <!--next page-->
+</div>
+
+<div class="page" id="resultsPage">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Results!</h1> <!--page header name-->
+	</div>
+
+	<div id="content" class="w3-container">
+        <p style= "color: #3f093f"> <b> Click this button to see! </b> </p> <!--text inviting to click button-->
+        <a href="#huzzahPage"  onclick="totalAllergyPercent();" class="w3-btn w3-black"> Results!!!</a> <!--moves to huzzah page-->
+    	</div>
+	</div>
+</div>
+
+<div class="page" id="huzzahPage">
+	<div class="w3-container w3-flat-carrot">
+		<h1>HUZZAH!</h1> <!--page header name-->
+        <p>Allergy Percentage is: </p> <p id="allergyText"></p> <!--displays allergy percentage-->
+        <p>Cold Percentage is: </p> <p id="coldText"></p> <!--displays cold percentage-->
+	</div>
+	
+	<div id="content" class="w3-container">
+        <p> </p>
+        <a href="#Huzzah" class="w3-btn w3-black"> Start Over </a> <!--goes to start-->
+	</div>
+</div>
+
 <footer class="w3-bottom w3-container w3-flat-carrot">
-	<p>DIY!</p>
+	<p>DIY!!!!!!</p>
 </footer>
+
+</body>
+</html>
 
 </body>
 </html>
